@@ -6,19 +6,21 @@
   </head>
 
   <body>
-    <video controls></video>
+    <video controls muted></video>
     <canvas></canvas>
 
+    <button id="PlaySample">Play Sample</button>
     <input placeholder="Video URL" id="VideoURL" />
     <textarea
       placeholder="Rekognition Response JSON Data"
       id="Data"
-      cols="30"
+      cols="50"
       rows="10"
     ></textarea>
 
     <button id="Play">Play</button>
 
     <script src="./src/main.js"></script>
+    <script src="./src/play-sample.js"></script>
   </body>
 </html>

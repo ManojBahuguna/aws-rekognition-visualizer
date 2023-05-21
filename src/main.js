@@ -21,11 +21,12 @@ function drawBoundingBox(boundingBox, label, width, height) {
 }
 
 function getBoundingBoxesForTime(data, timeInMS, offset = 200) {
-  return data.Persons.filter(
-    (person) =>
-      person.Timestamp > timeInMS - offset &&
-      person.Timestamp < timeInMS + offset
-  );
+  return data.Persons.filter((person) => {
+    const detectionStartTime =
+      person._startTimestamp ?? person.Timestamp - offset;
+    const detectionEndTime = person._endTimestamp ?? person.Timestamp + offset;
+    return timeInMS >= detectionStartTime && timeInMS <= detectionEndTime;
+  });
 }
 
 let lastFrame;
@@ -53,7 +54,6 @@ function play() {
   canvas.height = height;
   video.height = height;
 
-  
   function loop() {
     ctx.clearRect(0, 0, width, height);
     getBoundingBoxesForTime(data, video.currentTime * 1000).forEach((box) => {
@@ -70,10 +70,4 @@ function play() {
   loop();
 }
 
-document.querySelector("#Play").onclick = play;
-
-
-
-
-
-// autofill example data
+document.querySelector("#Play").addEventListener("click", play);

@@ -18,7 +18,16 @@ input,
 textarea,
 button {
   display: block;
-  margin: 1em;
-  font-size: 24px;
+  margin: 1.5rem;
+  font-size: 16px;
   padding: 8px 16px;
+}
+
+textarea {
+  font-family: monospace;
+}
+
+button#PlaySample {
+  font-size: 12px;
+  padding: 4px;
 }
